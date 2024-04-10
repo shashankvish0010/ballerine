@@ -5,13 +5,16 @@ import { UserAvatar } from '../../atoms/UserAvatar/UserAvatar';
 
 export const Welcome: FunctionComponent = () => {
   const { data: session } = useAuthenticatedUserQuery();
-  const user = useMemo(() => ({
-    firstname: session?.user?.firstName,
-    avatarUrl: session?.user?.avatarUrl
-  }), [session?.user?.firstName, session?.user?.avatarUrl]);
+  const user = useMemo(
+    () => ({
+      firstname: session?.user?.firstName,
+      avatarUrl: session?.user?.avatarUrl,
+    }),
+    [session?.user?.firstName, session?.user?.avatarUrl],
+  );
   return (
     <div className={`mt-[27px] flex h-[36px] w-[441px] items-center`}>
-     {user.avatarUrl && <UserAvatar className={`mr-2 d-6`} avatarUrl={user.avatarUrl} />}
+      {user.avatarUrl && <UserAvatar className={`mr-2 d-6`} avatarUrl={user.avatarUrl} />}
       <div className={`flex gap-x-2 text-[24px] font-semibold leading-[36px]`}>
         <span>{t('welcome.greeting', { defaultValue: 'Welcome' })}</span>
         {user.firstname && <span>{user.firstname}</span>}
