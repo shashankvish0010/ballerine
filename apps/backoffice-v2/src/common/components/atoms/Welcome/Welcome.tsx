@@ -8,13 +8,14 @@ export const Welcome: FunctionComponent = () => {
   const user = useMemo(
     () => ({
       firstname: session?.user?.firstName,
+      fullname: `${session?.user?.firstName} ${session?.user?.lastName}`,
       avatarUrl: session?.user?.avatarUrl,
     }),
-    [session?.user?.firstName, session?.user?.avatarUrl],
+    [session?.user?.firstName, session?.user?.lasstName, session?.user?.avatarUrl],
   );
   return (
     <div className={`mt-[27px] flex h-[36px] w-[441px] items-center`}>
-      {user.avatarUrl && <UserAvatar className={`mr-2 d-6`} avatarUrl={user.avatarUrl} />}
+      {user.avatarUrl && <UserAvatar fullName={user.fullname} className={`mr-2 d-6`} avatarUrl={user.avatarUrl} />}
       <div className={`flex gap-x-2 text-[24px] font-semibold leading-[36px]`}>
         <span>{t('welcome.greeting', { defaultValue: 'Welcome' })}</span>
         {user.firstname && <span>{user.firstname}</span>}
