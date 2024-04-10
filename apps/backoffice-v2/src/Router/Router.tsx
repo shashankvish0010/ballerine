@@ -49,12 +49,12 @@ const router = createBrowserRouter([
             children: [
               ...(env.VITE_AUTH_ENABLED
                 ? [
-                    {
-                      path: '/:locale/auth/sign-in',
-                      element: <SignIn />,
-                      errorElement: <RouteError />,
-                    },
-                  ]
+                  {
+                    path: '/:locale/auth/sign-in',
+                    element: <SignIn />,
+                    errorElement: <RouteError />,
+                  },
+                ]
                 : []),
             ],
           },
